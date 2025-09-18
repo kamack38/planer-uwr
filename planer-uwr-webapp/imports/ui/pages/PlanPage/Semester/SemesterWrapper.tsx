@@ -4,11 +4,18 @@ import { Course } from '../../../../api/courses';
 import type { Semester } from '../../../../api/plans';
 import { CourseWrapper } from '../CourseWrapper';
 
+interface Hours {
+  'ćw.': number;
+  'wyk.': number;
+  'inne': number;
+}
+
 interface SemesterWrapperProps {
   courses: Record<string, Course>;
   semester: Semester;
   ects: number;
   totalEcts: number;
+  hours: Hours;
 }
 
 export const SemesterWrapper = ({
@@ -16,6 +23,7 @@ export const SemesterWrapper = ({
   semester,
   ects,
   totalEcts,
+  hours,
 }: SemesterWrapperProps) => {
   if (semester.isGap) {
     return (
@@ -37,6 +45,12 @@ export const SemesterWrapper = ({
           <div className="ects">{totalEcts}</div>
           <div className="desc">ECTS do tej pory</div>
         </div>
+        {Object.entries(hours).map(([type, value]) => (
+          <div key={type}>
+            <div className="ects">{value}</div>
+            <div className="desc">Godzin {type} w semestrze</div>
+          </div>
+        )}
       </div>
       <Droppable droppableId={semester.semesterNumber.toString()}>
         {(provided) => (
