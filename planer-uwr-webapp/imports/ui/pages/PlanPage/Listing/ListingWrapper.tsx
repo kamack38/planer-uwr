@@ -10,27 +10,13 @@ import { Course, Courses } from '/imports/api/courses';
 
 const semestersNames = [
   'Oferta',
-  '2022/23 zimowy',
-  '2021/22 letni',
-  '2021/22 zimowy',
-  '2020/21 letni',
-  '2020/21 zimowy',
-  '2019/20 letni',
-  '2019/20 zimowy',
-  '2018/19 letni',
-  '2018/19 zimowy',
-  '2017/18 letni',
-  '2017/18 zimowy',
-  '2016/17 letni',
-  '2016/17 zimowy',
-  '2015/16 letni',
-  '2015/16 zimowy',
-  '2014/15 letni',
-  '2014/15 zimowy',
-  '2013/14 letni',
-  '2013/14 zimowy',
-  '2012/13 letni',
-  '2012/13 zimowy',
+  '2025/26 zimowy',
+  '2024/25 letni',
+  '2024/25 zimowy',
+  '2023/24 letni',
+  '2023/24 zimowy',
+  '2022/23 letni',
+  '2022/23 zimowy'
 ];
 
 interface ListingWrapperProps {

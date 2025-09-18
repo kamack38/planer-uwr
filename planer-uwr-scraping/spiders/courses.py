@@ -38,7 +38,7 @@ class CoursesSpider(scrapy.Spider):
 
     def parse(self, response):
         semesters = [{'url': sem.css('::attr(href)').get(), 'name': sem.css('::text').get()} for sem in
-                     response.css('#sidebar-inner > div > div > div > a')]
+                     response.css('.dropdown-menu[aria-labelledby="semester-dropdown"] a.dropdown-item.semester-link')]
         for sem in semesters:
             yield scrapy.Request(url=response.urljoin(sem['url']), callback=self.parse_semester(sem['name']),
                                  dont_filter=True)

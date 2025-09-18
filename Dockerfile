@@ -7,7 +7,7 @@ USER appuser
 WORKDIR /home/appuser
 
 RUN mkdir ~/.npm-global && npm config set prefix '~/.npm-global' && export PATH=~/.npm-global/bin:$PATH
-RUN npm install -g meteor
+RUN npm install -g meteor@2.16.0 
 WORKDIR /home/appuser/planer-uwr-webapp
 RUN npm install --production
 RUN /home/appuser/.meteor/meteor build /home/appuser/build
