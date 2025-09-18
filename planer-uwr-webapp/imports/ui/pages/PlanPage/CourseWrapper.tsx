@@ -59,6 +59,17 @@ export const CourseWrapper = ({
           >
             {course.ects} ECTS
           </Tag>
+          {course.exam ? (
+            <Tag
+              className="ects-tag"
+              style={{
+                backgroundColor: "darkred",
+                color: "white",
+              }}
+            >
+              EG
+            </Tag>
+          ) : null}
           <Tag className="source-tag">{source}</Tag>
           <CourseEffectTag effects={course.effects} />
           {course.owner === 96 ? (
