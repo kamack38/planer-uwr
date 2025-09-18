@@ -7,7 +7,7 @@ def modify_ects_from_file(file_path, updates):
         data = json.load(f)
 
     # updates is a list of tuples: [(name, new_ects_value), ...]
-    for name, new_ects_value in updates:
+    for name, new_ects_value, new_hours in updates:
         # print("Searching: ", name)
         for obj in data:
             # if obj["name"].startswith("[IM]"):
@@ -15,6 +15,7 @@ def modify_ects_from_file(file_path, updates):
             if "name" in obj and obj["name"] == "[IM] " + name:
                 print("Found: ", name)
                 obj["ects"] = str(new_ects_value)
+                obj["hours"] = new_hours
 
     # print(data)
 
@@ -24,23 +25,23 @@ def modify_ects_from_file(file_path, updates):
 
 updates = [
     # Przedmioty obowiązkowe matematyczne
-    ("Analiza matematyczna I", 11),
-    ("Analiza matematyczna II", 10),
-    ("Algebra I", 8),
-    ("Algebra II", 6),
-    ("Równania różniczkowe 1R", 7),
-    ("Rachunek prawdopodobieństwa dla informatyków", 7),
+    ("Analiza matematyczna I", 11, ["60 (wyk.)", "60 (ćw.)"]),
+    ("Analiza matematyczna II", 10, ["60 (wyk.)", "60 (ćw.)"]),
+    ("Algebra I", 8, ["45 (wyk.)", "45 (ćw.)"]),
+    ("Algebra II", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Równania różniczkowe 1R", 7, ["45 (wyk.)", "30 (ćw.)"]),
+    ("Rachunek prawdopodobieństwa dla informatyków", 7, ["45 (wyk.)", "30 (ćw.)"]),
     # Przedmioty matematyczne do wyboru (Tabela 5)
-    ("Algebra 2 R", 6),
-    ("Analiza funkcjonalna 1", 7),
-    ("Analiza matematyczna III", 10),
-    ("Funkcje analityczne R", 6),
-    ("Miara i całka", 6),
-    ("Rozmaitości różniczkowalne", 6),
-    ("Równania różniczkowe 2R", 6),
-    ("Rachunek prawdopodobieństwa 2R", 6),
-    ("Statystyka", 7),
-    ("Topologia", 6),
+    ("Algebra 2 R", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Analiza funkcjonalna 1", 7, ("45 [wyk.]", "30 (ćw.)")),
+    ("Analiza matematyczna III", 10, ["60 (wyk.)", "60 (ćw.)"]),
+    ("Funkcje analityczne R", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Miara i całka", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Rozmaitości różniczkowalne", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Równania różniczkowe 2R", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Rachunek prawdopodobieństwa 2R", 6, ["30 (wyk.)", "30 (ćw.)"]),
+    ("Statystyka", 7, ["30 (wyk.)", "15 (ćw.)"]),
+    ("Topologia", 6, ["30 (wyk.)", "30 (ćw.)"]),
 ]
 
 if len(sys.argv) < 2:
