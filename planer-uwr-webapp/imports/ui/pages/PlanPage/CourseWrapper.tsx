@@ -1,5 +1,5 @@
 import { useTracker } from 'meteor/react-meteor-data';
-import React, { useState } from 'react';
+import React from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
 import { Tag, Button } from '@blueprintjs/core';
 import { Popover2, Tooltip2 } from '@blueprintjs/popover2';
@@ -35,8 +35,6 @@ export const CourseWrapper = React.memo(({
   const source = course.source === 'courses' ? course.semester : 'Oferta';
   const ectsPercent = course.ects > 10 ? 10 : course.ects * 10;
 
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div
       ref={provided?.innerRef}
@@ -44,27 +42,15 @@ export const CourseWrapper = React.memo(({
       {...provided?.dragHandleProps}
       className={`course-wrapper ${provided ? '' : 'course-wrapper-clone'}`}
     >
-      <div
-        className="course-wrapper-inner"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        style={{ position: 'relative' }}
-      >
-        {isHovered && (
-          <Button
-            icon="info-sign"
-            minimal
-            style={{
-              position: "absolute",
-              top: 8,
-              right: 8,
-              zIndex: 10,
-            }}
-            onClick={() => {
-              window.open(`https://zapisy.ii.uni.wroc.pl${course.url}`, '_blank', 'noopener,noreferrer')
-            }}
-          />
-        )}
+      <div className="course-wrapper-inner">
+        <Button
+          icon="info-sign"
+          className="course-info-button"
+          minimal
+          onClick={() => {
+            window.open(`https://zapisy.ii.uni.wroc.pl${course.url}`, '_blank', 'noopener,noreferrer')
+          }}
+        />
         <div className="course-title">{course.name}</div>
         <div>
           <CourseTypeTag courseType={courseTypeById[course.courseType]} />
