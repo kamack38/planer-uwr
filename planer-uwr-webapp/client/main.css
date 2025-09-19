@@ -57,6 +57,7 @@ body {
 }
 
 .course-wrapper-inner {
+  position: relative;
   width: 290px;
   background-color: #293742;
   border-radius: 5px;
@@ -77,6 +78,17 @@ body {
 
 .course-wrapper-inner .ects-tag {
   margin-left: 5px;
+}
+
+.course-info-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: none !important;
+}
+.course-wrapper-inner:hover > .course-info-button {
+  display: inline-flex !important;
 }
 
 .semester-wrapper {
