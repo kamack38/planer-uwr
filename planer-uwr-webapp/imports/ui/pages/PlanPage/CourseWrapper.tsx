@@ -1,7 +1,7 @@
 import { useTracker } from 'meteor/react-meteor-data';
-import React from 'react';
+import React, { useState } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import { Tag } from '@blueprintjs/core';
+import { Tag, Button } from '@blueprintjs/core';
 import { Popover2, Tooltip2 } from '@blueprintjs/popover2';
 import { Courses } from '../../../api/courses';
 import { CourseEntry } from '../../../api/plans';
@@ -35,6 +35,8 @@ export const CourseWrapper = ({
   const source = course.source === 'courses' ? course.semester : 'Oferta';
   const ectsPercent = course.ects > 10 ? 10 : course.ects * 10;
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       ref={provided?.innerRef}
@@ -42,7 +44,27 @@ export const CourseWrapper = ({
       {...provided?.dragHandleProps}
       className={`course-wrapper ${provided ? '' : 'course-wrapper-clone'}`}
     >
-      <div className="course-wrapper-inner">
+      <div
+        className="course-wrapper-inner"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{ position: 'relative' }}
+      >
+        {isHovered && (
+          <Button
+            icon="info-sign"
+            minimal
+            style={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              zIndex: 10,
+            }}
+            onClick={() => {
+              window.open(`https://zapisy.ii.uni.wroc.pl${course.url}`, '_blank', 'noopener,noreferrer')
+            }}
+          />
+        )}
         <div className="course-title">{course.name}</div>
         <div>
           <CourseTypeTag courseType={courseTypeById[course.courseType]} />
@@ -60,15 +82,23 @@ export const CourseWrapper = ({
             {course.ects} ECTS
           </Tag>
           {course.exam ? (
-            <Tag
-              className="ects-tag"
-              style={{
-                backgroundColor: "darkred",
-                color: "white",
-              }}
-            >
-              EG
-            </Tag>
+            <Popover2>
+              <Tooltip2
+                content="Przedmiot kończy się egzaminem"
+                position="bottom"
+                hoverOpenDelay={300}
+              >
+                <Tag
+                  className="ects-tag"
+                  style={{
+                    backgroundColor: "darkred",
+                    color: "white",
+                  }}
+                >
+                  EG
+                </Tag>
+              </Tooltip2>
+            </Popover2>
           ) : null}
           <Tag className="source-tag">{source}</Tag>
           <CourseEffectTag effects={course.effects} />
