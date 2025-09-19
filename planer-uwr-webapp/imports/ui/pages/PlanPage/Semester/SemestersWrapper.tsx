@@ -37,7 +37,7 @@ function sumHoursByType(arr: string[]) {
   return sums;
 }
 
-export const SemestersWrapper = ({
+export const SemestersWrapper = React.memo(({
   courses,
   semesters,
 }: SemestersWrapperProps) => {
@@ -94,4 +94,4 @@ export const SemestersWrapper = ({
       })}
     </div>
   );
-};
+});

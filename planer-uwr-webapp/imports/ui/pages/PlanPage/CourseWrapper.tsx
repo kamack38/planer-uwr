@@ -14,7 +14,7 @@ interface CourseWrapperProps {
   provided?: DraggableProvided;
 }
 
-export const CourseWrapper = ({
+export const CourseWrapper = React.memo(({
   course: { id },
   provided,
 }: CourseWrapperProps) => {
@@ -124,4 +124,4 @@ export const CourseWrapper = ({
       </div>
     </div>
   );
-};
+});
