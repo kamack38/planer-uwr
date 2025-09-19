@@ -18,7 +18,7 @@ interface SemesterWrapperProps {
   hours: Hours;
 }
 
-export const SemesterWrapper = ({
+export const SemesterWrapper = React.memo(({
   courses,
   semester,
   ects,
@@ -80,4 +80,4 @@ export const SemesterWrapper = ({
       </Droppable>
     </>
   );
-};
+});

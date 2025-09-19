@@ -23,7 +23,7 @@ interface ListingWrapperProps {
   showTrash: boolean;
 }
 
-export const ListingWrapper = ({ showTrash }: ListingWrapperProps) => {
+export const ListingWrapper = React.memo(({ showTrash }: ListingWrapperProps) => {
   const [filter, setFilter] = useState('');
   const [filterDebounced] = useDebounce(filter, 100);
   const [sourceSemester, setSourceSemester] = useState(semestersNames[0]);
@@ -106,4 +106,4 @@ export const ListingWrapper = ({ showTrash }: ListingWrapperProps) => {
       </div>
     </>
   );
-};
+});
