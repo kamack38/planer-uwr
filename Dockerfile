@@ -1,4 +1,4 @@
-FROM node:14.17 as builder
+FROM node:14.17 AS builder
 
 RUN useradd -ms /bin/bash appuser
 COPY ./planer-uwr-webapp /home/appuser/planer-uwr-webapp
