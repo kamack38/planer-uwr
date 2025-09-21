@@ -1,7 +1,8 @@
 import { useTracker } from 'meteor/react-meteor-data';
-import React from 'react';
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import { Tag, Button } from '@blueprintjs/core';
+import { Tag, Button, Drawer, Classes } from '@blueprintjs/core';
 import { Popover2, Tooltip2 } from '@blueprintjs/popover2';
 import { Courses } from '../../../api/courses';
 import { CourseEntry } from '../../../api/plans';
@@ -35,6 +36,8 @@ export const CourseWrapper = React.memo(({
   const source = course.source === 'courses' ? course.semester : 'Oferta';
   const ectsPercent = course.ects > 10 ? 10 : course.ects * 10;
 
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+
   return (
     <div
       ref={provided?.innerRef}
@@ -47,10 +50,26 @@ export const CourseWrapper = React.memo(({
           icon="info-sign"
           className="course-info-button"
           minimal
-          onClick={() => {
-            window.open(`https://zapisy.ii.uni.wroc.pl${course.url}`, '_blank', 'noopener,noreferrer')
-          }}
+          onClick={() => {setIsDescriptionOpen(true)}}
         />
+
+        <Drawer
+          isOpen={isDescriptionOpen}
+          title="Course Description"
+          icon="info-sign"
+          onClose={() => setIsDescriptionOpen(false)}
+          size="50%"
+        >
+          <div className={Classes.DRAWER_BODY}>
+            <div className={Classes.DIALOG_BODY}>
+              <ReactMarkdown>{course.description}</ReactMarkdown>
+            </div>
+          </div>
+          <div className={Classes.DRAWER_FOOTER}>
+            <a href={`https://zapisy.ii.uni.wroc.pl${course.url}`} target="_blank">Open source</a>
+          </div>
+        </Drawer>
+
         <div className="course-title">{course.name}</div>
         <div>
           <CourseTypeTag courseType={courseTypeById[course.courseType]} />

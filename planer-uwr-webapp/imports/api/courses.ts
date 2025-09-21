@@ -18,6 +18,7 @@ const baseSchema = z.object({
     z.boolean(),
     (str) => str === 'Yes',
   ),
+  description: z.string(),
 });
 
 export const courseSchema = z.union([

@@ -21,6 +21,7 @@ class CoursesSpider(scrapy.Spider):
                 'ects': response.css('#table-info > tbody > tr:nth-child(5) > td::text').get().strip(),
                 'hours': response.css('#hours span::text').getall(),
                 'exam': response.css('#table-info > tbody > tr:nth-child(7) > td::text').get(),
+                'description': response.css('.description > span.markdown::text').get(),
                 'semester': semester
             }
 
