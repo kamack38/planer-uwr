@@ -55,7 +55,7 @@ export const CourseWrapper = React.memo(({
 
         <Drawer
           isOpen={isDescriptionOpen}
-          title="Course Description"
+          title="Opis przedmiotu"
           icon="info-sign"
           onClose={() => setIsDescriptionOpen(false)}
           size="50%"
@@ -66,7 +66,7 @@ export const CourseWrapper = React.memo(({
             </div>
           </div>
           <div className={Classes.DRAWER_FOOTER}>
-            <a href={`https://zapisy.ii.uni.wroc.pl${course.url}`} target="_blank">Open source</a>
+            <a href={`https://zapisy.ii.uni.wroc.pl${course.url}`} target="_blank">Otwórz w systemie zapisów</a>
           </div>
         </Drawer>
 
