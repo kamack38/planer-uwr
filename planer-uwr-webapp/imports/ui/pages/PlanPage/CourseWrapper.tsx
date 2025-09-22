@@ -1,6 +1,7 @@
 import { useTracker } from 'meteor/react-meteor-data';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { DraggableProvided } from 'react-beautiful-dnd';
 import { Tag, Button, Drawer, Classes } from '@blueprintjs/core';
 import { Popover2, Tooltip2 } from '@blueprintjs/popover2';
@@ -62,7 +63,7 @@ export const CourseWrapper = React.memo(({
         >
           <div className={Classes.DRAWER_BODY}>
             <div className={Classes.DIALOG_BODY}>
-              <ReactMarkdown>{course.description}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{course.description}</ReactMarkdown>
             </div>
           </div>
           <div className={Classes.DRAWER_FOOTER}>
