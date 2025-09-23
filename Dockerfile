@@ -1,4 +1,4 @@
-FROM node:14.17 AS builder
+FROM node:14.17-slim AS builder
 
 RUN useradd -ms /bin/bash appuser
 COPY --chown=appuser:appuser ./planer-uwr-webapp/.meteor ./planer-uwr-webapp/package*.json /home/appuser/planer-uwr-webapp
@@ -15,7 +15,7 @@ RUN /home/appuser/.meteor/meteor build /home/appuser/build
 WORKDIR /home/appuser/build
 RUN tar -xzf planer-uwr-webapp.tar.gz
 
-FROM node:14.17
+FROM node:14.17-slim
 
 COPY --from=builder /home/appuser/build/bundle /bundle
 WORKDIR /bundle/programs/server
