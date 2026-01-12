@@ -46,6 +46,7 @@ updates = [
     ("Rachunek prawdopodobieństwa 1R", 7, ["45 (wyk.)", "30 (ćw.)"]),
     ("Algebra liniowa 2", 8, ["45 (wyk.)", "30 (ćw.)"]),
     ("Algebra liniowa 1R", 9, ["60 (wyk.)", "30 (ćw.)"]),
+    ("Równania różniczkowe 1", 7, ["45 (wyk.)", "30 (ćw.)"]),
 ]
 
 if len(sys.argv) < 2:
